@@ -1,0 +1,41 @@
+/* Krom Yapı · Site C (Sektör Vitrini) — siteye özel stiller. Ortak stiller: /ortak/web/cekirdek.css
+   Karakter: editoryal; büyük fotoğraf, ince çizgi, numaralı dergi düzeni. */
+
+/* Sektör mozaiği */
+.mozaik-kutu img { transition: transform .9s cubic-bezier(.22,.61,.36,1), filter .5s; }
+.mozaik-kutu:hover img { transform: scale(1.06); }
+.mozaik-kutu .mozaik-ok { transition: transform .3s ease, background .3s ease; }
+.mozaik-kutu:hover .mozaik-ok { transform: translateX(4px); background: var(--kirmizi); color: #fff; }
+
+/* Sektör dizini: satır üzerine gelince imleci izleyen görsel (yalnız fare ile) */
+.dizin-satir { transition: color .25s ease, padding .35s cubic-bezier(.22,.61,.36,1); }
+@media (hover: hover) and (min-width: 1024px) {
+  .dizin-satir:hover { padding-left: 1.25rem; color: var(--kirmizi-koyu); }
+}
+#dizin-gorsel { position: fixed; left: 0; top: 0; width: 320px; aspect-ratio: 4 / 3; pointer-events: none; z-index: 45;
+  opacity: 0; transform: translate(-50%, -50%) scale(.92); transition: opacity .25s ease, transform .25s ease; overflow: hidden;
+  box-shadow: 0 30px 60px -20px rgba(0,0,0,.45); }
+#dizin-gorsel.acik { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+#dizin-gorsel img { width: 100%; height: 100%; object-fit: cover; }
+@media (hover: none), (max-width: 1023px) { #dizin-gorsel { display: none; } }
+
+/* Masonry galeri */
+.masonry { column-count: 2; column-gap: 10px; }
+@media (min-width: 768px) { .masonry { column-count: 3; column-gap: 14px; } }
+@media (min-width: 1280px) { .masonry { column-count: 4; } }
+.masonry > * { break-inside: avoid; margin-bottom: 10px; display: block; }
+@media (min-width: 768px) { .masonry > * { margin-bottom: 14px; } }
+.masonry img { width: 100%; height: auto; display: block; background: #e4e4e7; }
+
+/* Editoryal çizgiler, numaralar */
+.cizgili > * + * { border-top: 1px solid #e4e4e7; }
+.kucuk-baslik { font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+.giris-metni { font-weight: 300; letter-spacing: -0.01em; }
+.dergi-kart:hover h3 { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+
+/* Portre proje kartı (projeler ızgarası) */
+.portre-kart img { transition: transform .8s cubic-bezier(.22,.61,.36,1); }
+.portre-kart:hover img { transform: scale(1.05); }
+
+/* Grup çubukları */
+.cubuk > span { transition: width .8s cubic-bezier(.22,.61,.36,1); }

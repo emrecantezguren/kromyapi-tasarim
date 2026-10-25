@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Krom Yapı · Tasarım Sunumu | Nex Yazılım</title>
+<meta name="description" content="Nex Yazılım'ın Krom Yapı için hazırladığı üç web sitesi tasarımı: Proje Atlası, Zemin Seçici ve Sektör Vitrini.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="gorsel/nex-favicon.png" type="image/png">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  colors: { zemin: '#f5f5f7', murekkep: '#1d1d1f', soluk: '#86868b', kirmizi: '#ef4444' },
+  fontFamily: { sans: ['-apple-system', 'BlinkMacSystemFont', 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'] }
+} } }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { -webkit-font-smoothing: antialiased; }
+  /* Canlı mini ön izleme: 1440×900 sayfa, kutuya ölçeklenmiş */
+  .onizleme { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #e5e5ea; }
+  .onizleme img.afis, .onizleme iframe { position: absolute; top: 0; left: 0; }
+  .onizleme img.afis { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .onizleme iframe { width: 1440px; height: 900px; border: 0; transform-origin: 0 0; pointer-events: none; opacity: 0; transition: opacity .6s ease; }
+  .onizleme iframe.hazir { opacity: 1; }
+  .telefon { position: absolute; right: 12px; bottom: -36px; width: 26%; aspect-ratio: 9 / 19.5; border-radius: 18px; border: 5px solid #1d1d1f;
+    background: #1d1d1f; overflow: hidden; box-shadow: 0 18px 40px -12px rgba(0,0,0,.45); transition: transform .5s cubic-bezier(.22,.61,.36,1); }
+  .telefon img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .tasarim-kart:hover .telefon { transform: translateY(-10px) rotate(-2deg); }
+  .tasarim-kart:hover .kart-ok { transform: translateX(4px); }
+  .kart-ok { transition: transform .25s ease; }
+  @media (prefers-reduced-motion: reduce) { .telefon, .kart-ok, .onizleme iframe { transition: none; } }
+</style>
+</head>
+<body class="bg-zemin text-murekkep font-sans">
+
+<header class="sticky top-0 z-50 bg-white/75 backdrop-blur-md border-b border-black/5">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+    <a href="https://e-nexgroup.com/" target="_blank" rel="noopener" class="flex items-center gap-3" aria-label="Nex Yazılım">
+      <img src="gorsel/nex-logo.png" alt="NEX" class="h-10 w-10">
+      <span class="font-semibold tracking-tight">Nex Yazılım</span>
+    </a>
+    <nav class="flex items-center gap-5 text-sm">
+      <a href="#tasarimlar" class="hidden sm:inline text-soluk hover:text-murekkep transition-colors">Tasarımlar</a>
+      <a href="https://e-nexgroup.com/" target="_blank" rel="noopener" class="hidden md:inline text-soluk hover:text-murekkep transition-colors">e-nexgroup.com ↗</a>
+      <a href="mailto:info@e-nexgroup.com" class="inline-flex items-center rounded-full bg-murekkep text-white px-4 py-2 font-medium hover:bg-black transition-colors">İletişim</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- Karşılama: Nex Yazılım -->
+  <section class="max-w-5xl mx-auto px-5 sm:px-8 pt-16 md:pt-24 pb-14 text-center">
+    <img src="gorsel/nex-logo.png" alt="" class="mx-auto h-20 w-20 md:h-24 md:w-24 mb-8">
+    <p class="inline-flex items-center gap-2 rounded-full bg-white border border-black/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-soluk mb-7">
+      <span class="h-1.5 w-1.5 rounded-full bg-kirmizi"></span>Tasarım sunumu · Krom Yapı
+    </p>
+    <h1 class="text-[34px] leading-[1.08] sm:text-5xl md:text-6xl font-extrabold tracking-tight">
+      Dijital Deneyimin Ötesinde: <span class="text-kirmizi">Özel Web</span> ve Akıllı Otomasyon Çözümleri
+    </h1>
+    <p class="mt-6 text-base md:text-lg text-soluk max-w-2xl mx-auto leading-relaxed">
+      Nex Yazılım ile işletmenizin dijital kaslarını güçlendirin. Hazır şablonların ötesinde, tamamen markanıza özel sıfırdan inşa edilmiş web deneyimleri ve akıllı otomasyon çözümleri.
+    </p>
+    <p class="mt-8 text-lg md:text-xl font-medium max-w-2xl mx-auto">
+      Krom Yapı için üç farklı web sitesi tasarımı hazırladık. Birini seçin, içine girin ve gezin.
+    </p>
+    <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
+      <a href="#tasarimlar" class="inline-flex items-center gap-2 rounded-full bg-murekkep text-white px-7 py-3.5 font-medium hover:bg-black transition-colors">Tasarımları görün <span aria-hidden="true">↓</span></a>
+      <a href="https://e-nexgroup.com/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full bg-white border border-black/10 px-7 py-3.5 font-medium hover:border-black/30 transition-colors">Nex Yazılım'ı tanıyın</a>
+    </div>
+  </section>
+
+  <!-- Üç tasarım -->
+  <section id="tasarimlar" class="max-w-7xl mx-auto px-5 sm:px-8 pb-20 md:pb-28 scroll-mt-20">
+    <div class="text-center mb-12 md:mb-16">
+      <span class="text-kirmizi font-bold tracking-widest uppercase text-xs">Üç tasarım önerisi</span>
+      <h2 class="mt-3 text-3xl md:text-5xl font-extrabold tracking-tight">Aynı içerik, üç farklı deneyim</h2>
+      <p class="mt-4 text-soluk md:text-lg max-w-2xl mx-auto">Üçü de kromyapi.com ve kromyapi.com.tr'deki gerçek içerikle, aynı tasarım dili üzerine kuruldu. Her birinin kendine özgü imza bölümleri var.</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-6 xl:gap-8">
+      
+      <article class="tasarim-kart relative flex flex-col rounded-3xl bg-white border border-black/5 shadow-sm hover:shadow-xl transition-shadow duration-300">
+        <div class="relative">
+          <div class="onizleme rounded-t-3xl" data-canli="proje-atlasi/?onizleme">
+            <img class="afis" src="gorsel/proje-atlasi-masaustu.jpg" alt="Proje Atlası ana sayfası, masaüstü görünümü" width="960" height="600" loading="lazy">
+          </div>
+          <div class="telefon" aria-hidden="true"><img src="gorsel/proje-atlasi-mobil.jpg" alt="" loading="lazy"></div>
+          <a href="proje-atlasi/" class="absolute inset-0 z-10 rounded-t-3xl" aria-label="Proje Atlası tasarımını aç"></a>
+        </div>
+        <div class="p-6 md:p-7 flex flex-col flex-1">
+          <div class="pr-[30%]">
+            <p class="text-xs font-bold tracking-[0.18em] uppercase text-soluk">Tasarım 01</p>
+            <h3 class="mt-2 text-2xl md:text-[28px] font-extrabold tracking-tight">Proje Atlası</h3>
+          </div>
+          <p class="mt-3 text-soluk leading-relaxed">Krom Yapı'nın 1997'den beri Türkiye'ye yayılan projelerini etkileşimli bir harita üzerinde anlatır.</p>
+          <ul class="mt-5 space-y-2.5 text-sm leading-relaxed"><li class="flex gap-2.5"><span class="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-kirmizi"></span><span>Şehir ve ilçe pinli proje haritası; sektör ve ürün grubuna göre süzülür</span></li><li class="flex gap-2.5"><span class="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-kirmizi"></span><span>Duyurulardan derlenen, filtrelenebilir proje akışı</span></li><li class="flex gap-2.5"><span class="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-kirmizi"></span><span>Tam ekran slider, tanıtım videosu ve hareketli referans şeridi</span></li></ul>
+          <div class="mt-auto pt-7 flex items-center justify-between gap-4">
+            <a href="proje-atlasi/" class="inline-flex items-center gap-2 rounded-full bg-murekkep text-white px-6 py-3 font-medium hover:bg-black transition-colors">Tasarımı incele <span class="kart-ok" aria-hidden="true">→</span></a>
+            <span class="text-sm text-soluk whitespace-nowrap">180 sayfa</span>
+          </div>
+        </div>
+      </article>
+      <article class="tasarim-kart relative flex flex-col rounded-3xl bg-white border border-black/5 shadow-sm hover:shadow-xl transition-shadow duration-300">
+        <div class="relative">
+          <div class="onizleme rounded-t-3xl" data-canli="zemin-secici/?onizleme">
+            <img class="afis" src="gorsel/zemin-secici-masaustu.jpg" alt="Zemin Seçici ana sayfası, masaüstü görünümü" width="960" height="600" loading="lazy">
+          </div>
+          <div class="telefon" aria-hidden="true"><img src="gorsel/zemin-secici-mobil.jpg" alt="" loading="lazy"></div>
+          <a href="zemin-secici/" class="absolute inset-0 z-10 rounded-t-3xl" aria-label="Zemin Seçici tasarımını aç"></a>
+        </div>
+        <div class="p-6 md:p-7 flex flex-col flex-1">
+          <div class="pr-[30%]">
+            <p class="text-xs font-bold tracking-[0.18em] uppercase text-soluk">Tasarım 02</p>
+            <h3 class="mt-2 text-2xl md:text-[28px] font-extrabold tracking-tight">Zemin Seçici</h3>
+          </div>
+          <p class="mt-3 text-soluk leading-relaxed">Ziyaretçiyi alanına ve koşullarına uygun zemine götüren, teknik odaklı bir rehber.</p>
+          <ul class="mt-5 space-y-2.5 text-sm leading-relaxed"><li class="flex gap-2.5"><span class="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-kirmizi"></span><span>Kullanım alanı ve koşul seçimine göre ürün öneren zemin seçici</span></li><li class="flex gap-2.5"><span class="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-kirmizi"></span><span>Katman katman ürün kesitleri (23 ürün) ve teknik katalog</span></li><li class="flex gap-2.5"><span class="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-kirmizi"></span><span>Sektöre göre süzülen projeler ve ürün özellik tabloları</span></li></ul>
+          <div class="mt-auto pt-7 flex items-center justify-between gap-4">
+            <a href="zemin-secici/" class="inline-flex items-center gap-2 rounded-full bg-murekkep text-white px-6 py-3 font-medium hover:bg-black transition-colors">Tasarımı incele <span class="kart-ok" aria-hidden="true">→</span></a>
+            <span class="text-sm text-soluk whitespace-nowrap">181 sayfa</span>
+          </div>
+        </div>
+      </article>
+      <article class="tasarim-kart relative flex flex-col rounded-3xl bg-white border border-black/5 shadow-sm hover:shadow-xl transition-shadow duration-300">
+        <div class="relative">
+          <div class="onizleme rounded-t-3xl" data-canli="sektor-vitrini/?onizleme">
+            <img class="afis" src="gorsel/sektor-vitrini-masaustu.jpg" alt="Sektör Vitrini ana sayfası, masaüstü görünümü" width="960" height="600" loading="lazy">
+          </div>
+          <div class="telefon" aria-hidden="true"><img src="gorsel/sektor-vitrini-mobil.jpg" alt="" loading="lazy"></div>
+          <a href="sektor-vitrini/" class="absolute inset-0 z-10 rounded-t-3xl" aria-label="Sektör Vitrini tasarımını aç"></a>
+        </div>
+        <div class="p-6 md:p-7 flex flex-col flex-1">
+          <div class="pr-[30%]">
+            <p class="text-xs font-bold tracking-[0.18em] uppercase text-soluk">Tasarım 03</p>
+            <h3 class="mt-2 text-2xl md:text-[28px] font-extrabold tracking-tight">Sektör Vitrini</h3>
+          </div>
+          <p class="mt-3 text-soluk leading-relaxed">Projeleri sektör sektör, büyük fotoğraflar ve dergi düzeniyle sunan editoryal bir tasarım.</p>
+          <ul class="mt-5 space-y-2.5 text-sm leading-relaxed"><li class="flex gap-2.5"><span class="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-kirmizi"></span><span>Sektör mozaiği ve imleci izleyen görselli sektör dizini</span></li><li class="flex gap-2.5"><span class="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-kirmizi"></span><span>Yedi sektör sayfası ve vaka anlatımlı proje sayfaları</span></li><li class="flex gap-2.5"><span class="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-kirmizi"></span><span>Masonry fotoğraf galerisi ve dergi düzeninde duyurular</span></li></ul>
+          <div class="mt-auto pt-7 flex items-center justify-between gap-4">
+            <a href="sektor-vitrini/" class="inline-flex items-center gap-2 rounded-full bg-murekkep text-white px-6 py-3 font-medium hover:bg-black transition-colors">Tasarımı incele <span class="kart-ok" aria-hidden="true">→</span></a>
+            <span class="text-sm text-soluk whitespace-nowrap">189 sayfa</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Ortak altyapı -->
+  <section class="bg-white border-y border-black/5">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-16 md:py-20">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10">
+        
+        <div><p class="text-4xl md:text-5xl font-extrabold tracking-tight">3</p><p class="mt-2 text-sm md:text-base text-soluk">tasarım, toplam 550 sayfa</p></div>
+        <div><p class="text-4xl md:text-5xl font-extrabold tracking-tight">114</p><p class="mt-2 text-sm md:text-base text-soluk">proje ve duyuru</p></div>
+        <div><p class="text-4xl md:text-5xl font-extrabold tracking-tight">1.259</p><p class="mt-2 text-sm md:text-base text-soluk">proje fotoğrafı</p></div>
+        <div><p class="text-4xl md:text-5xl font-extrabold tracking-tight">47</p><p class="mt-2 text-sm md:text-base text-soluk">ürün, 10 ürün grubu</p></div>
+      </div>
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="rounded-2xl bg-zemin p-6"><p class="font-semibold mb-1">Telefondan da açın</p><p class="text-sm text-soluk leading-relaxed">Üç tasarım da 320 px telefondan geniş masaüstüne kadar test edildi; telefonda alt hızlı iletişim çubuğu çıkar.</p></div>
+        <div class="rounded-2xl bg-zemin p-6"><p class="font-semibold mb-1">Gerçek içerik</p><p class="text-sm text-soluk leading-relaxed">Projeler, ürünler, referanslar ve kurumsal metinler iki Krom Yapı sitesinden alındı; görseller yerel kopyadır.</p></div>
+        <div class="rounded-2xl bg-zemin p-6"><p class="font-semibold mb-1">Ön izleme notu</p><p class="text-sm text-soluk leading-relaxed">İletişim ve teklif formları bu ön izlemede gönderim yapmaz; canlıya geçişte e-postaya bağlanır.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nex Yazılım hizmetleri -->
+  <section class="max-w-7xl mx-auto px-5 sm:px-8 py-20 md:py-28">
+    <div class="text-center mb-12">
+      <span class="text-kirmizi font-bold tracking-widest uppercase text-xs">Uzmanlık Alanlarımız</span>
+      <h2 class="mt-3 text-3xl md:text-5xl font-extrabold tracking-tight">Terzi Usulü Dijital Çözümler</h2>
+      <p class="mt-4 text-soluk md:text-lg max-w-2xl mx-auto">Hazır şablonlar yerine, işletmenizin ihtiyaçlarına göre sıfırdan inşa edilmiş özel web deneyimleri ve akıllı otomasyon sistemleri geliştiriyoruz.</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="rounded-2xl bg-white border border-black/5 p-6"><p class="font-semibold mb-2">Kullanıcı Odaklı Deneyim</p><p class="text-sm text-soluk leading-relaxed">Kişiye özel hazırladığımız profesyonel tasarımlarda sadece estetiği değil; kullanıcı davranışlarını analiz ederek yüksek dönüşüm sağlayan, modern ve erişilebilir arayüzler tasarlıyoruz.</p></div>
+      <div class="rounded-2xl bg-white border border-black/5 p-6"><p class="font-semibold mb-2">Ölçeklenebilir Yazılım Mimarisi</p><p class="text-sm text-soluk leading-relaxed">Laravel ve Filament PHP ekosistemini kullanarak; yüksek performanslı, güvenli ve yönetimi kolay kurumsal web uygulamaları ile yönetim panelleri geliştiriyoruz.</p></div>
+      <div class="rounded-2xl bg-white border border-black/5 p-6"><p class="font-semibold mb-2">Yapay Zeka ve Otomasyon</p><p class="text-sm text-soluk leading-relaxed">Claude ve Gemini API entegrasyonlarıyla iş süreçlerinizi otomatikleştiriyor; özel otonom botlar ve akıllı randevu sistemleriyle operasyonel verimliliğinizi artırıyoruz.</p></div>
+      <div class="rounded-2xl bg-white border border-black/5 p-6"><p class="font-semibold mb-2">Özel Yönetim Panelleri</p><p class="text-sm text-soluk leading-relaxed">İşletmenizin operasyonel yapısına tam uyum sağlayan, Filament PHP ile geliştirilmiş özel CRM ve ERP çözümleri. Karmaşadan uzak, tamamen sizin için tasarlanmış yönetim panelleri.</p></div>
+    </div>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-5 sm:px-8 pb-20 md:pb-28 text-center">
+    <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight">Geleceğin Dijital Altyapısını <span class="text-kirmizi">Birlikte İnşa Edelim</span></h2>
+    <p class="mt-5 text-soluk md:text-lg">Dijital vizyonunuzu, tamamen size özel web deneyimleri ve akıllı otomasyon sistemleriyle hayata geçirelim. Ücretsiz danışmanlık için iletişime geçin.</p>
+    <a href="mailto:info@e-nexgroup.com" class="mt-8 inline-flex items-center gap-2 rounded-full bg-murekkep text-white px-7 py-3.5 font-medium hover:bg-black transition-colors">info@e-nexgroup.com</a>
+  </section>
+</main>
+
+<footer class="border-t border-black/5 bg-white">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-10 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-soluk">
+    <div class="flex items-center gap-3"><img src="gorsel/nex-logo.png" alt="NEX" class="h-9 w-9"><span>© 2026 Nex Yazılım. Tüm hakları saklıdır.</span></div>
+    <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+      <a class="hover:text-murekkep" href="https://e-nexgroup.com/" target="_blank" rel="noopener">e-nexgroup.com</a>
+      <a class="hover:text-murekkep" href="mailto:info@e-nexgroup.com">info@e-nexgroup.com</a>
+      <a class="hover:text-murekkep" href="https://www.instagram.com/nexgroupofficial/" target="_blank" rel="noopener">Instagram</a>
+      <a class="hover:text-murekkep" href="https://www.linkedin.com/company/nex-yazilim/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Mini ön izlemeler: kart görününce canlı sayfayı 1440×900 açar, kutuya ölçekler; o zamana kadar görüntü gösterilir.
+   Telefonda (ve hareket azaltma tercihinde) yalnız görüntü kalır, ağır sayfa yüklenmez. */
+(function () {
+  var kutular = [].slice.call(document.querySelectorAll('.onizleme[data-canli]'));
+  var olcekle = function (k) { var f = k.querySelector('iframe'); if (f) f.style.transform = 'scale(' + (k.clientWidth / 1440) + ')'; };
+  window.addEventListener('resize', function () { kutular.forEach(olcekle); });
+  var canliOlsun = window.matchMedia('(min-width: 1024px)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!canliOlsun || !('IntersectionObserver' in window)) return;
+  var g = new IntersectionObserver(function (girdiler) {
+    girdiler.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      g.unobserve(e.target);
+      var f = document.createElement('iframe');
+      f.src = e.target.dataset.canli; f.title = 'Canlı ön izleme'; f.tabIndex = -1; f.setAttribute('aria-hidden', 'true'); f.loading = 'lazy';
+      f.addEventListener('load', function () { setTimeout(function () { f.classList.add('hazir'); }, 1200); });
+      e.target.appendChild(f); olcekle(e.target);
+    });
+  }, { rootMargin: '200px' });
+  kutular.forEach(function (k) { g.observe(k); });
+})();
+</script>
+</body>
+</html>
