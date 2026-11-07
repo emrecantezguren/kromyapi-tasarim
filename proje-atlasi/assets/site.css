@@ -27,3 +27,11 @@
 .sehir-satir.secili .sehir-cubuk > span { background: #fff; }
 .atlas-acik .sehir-satir.secili { background: #fef2f2; }
 .atlas-acik .sehir-satir.secili .sehir-cubuk > span { background: var(--kirmizi-koyu); }
+
+/* Seçim kutusu — mega menü dili: kırmızı üst çizgi, büyük harf kalın satırlar, üzerine gelince sol kırmızı çizgi */
+.secim-liste { padding: .5rem 0; border-top: 2px solid var(--kirmizi); box-shadow: 0 20px 40px -12px rgba(0, 0, 0, .25); }
+.secim-oge { padding: .65rem 1.25rem; border-left: 2px solid transparent; font-size: 12px; font-weight: 700; letter-spacing: .06em;
+  text-transform: uppercase; color: #52525b; }
+.secim-oge.etkin { background: #fafafa; border-left-color: var(--kirmizi); color: var(--kirmizi); }
+.secim-sayi { min-width: 1.9rem; padding: 2px 6px; background: #f4f4f5; color: #71717a; text-align: center; letter-spacing: 0; }
+.secim-oge.etkin .secim-sayi, .secim-oge[aria-selected="true"] .secim-sayi { background: var(--kirmizi); color: #fff; }

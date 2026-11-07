@@ -89,6 +89,39 @@ details[open] > summary .ac-ok { transform: rotate(180deg); }
 #cerez { transform: translateY(calc(100% + 120px)); visibility: hidden; transition: transform .4s ease, visibility 0s linear .4s; }
 #cerez.goster { transform: none; visibility: visible; transition: transform .4s ease, visibility 0s; }
 
+/* Seçim kutusu (yerel select yerine; cekirdek.js) — yapı ve ortak taban. Her tasarım site.css'te kendi biçimini verir. */
+.secim { position: relative; }
+.secim-yerel { position: absolute !important; inset: auto auto 0 0; width: 1px !important; height: 1px !important; padding: 0 !important; margin: 0 !important;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0 !important; opacity: 0; pointer-events: none; }
+.secim-dugme { display: flex; align-items: center; gap: .5rem; width: 100%; padding: .5rem .75rem; border: 1px solid #d4d4d8; background: #fff;
+  color: #18181b; text-align: left; line-height: 1.5; cursor: pointer; transition: border-color .2s ease, box-shadow .2s ease; }
+.secim-dugme:hover { border-color: #a1a1aa; }
+.secim-dugme:focus-visible, .secim.acik .secim-dugme { outline: none; border-color: var(--kirmizi); box-shadow: 0 0 0 1px var(--kirmizi); }
+.secim-dugme:disabled { opacity: .5; cursor: not-allowed; }
+.secim-metin { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+form .secim-bos .secim-metin { color: #71717a; }
+.secim-ok { flex-shrink: 0; margin-right: -.25rem; font-size: 22px; color: #71717a; transition: transform .25s ease, color .2s ease; }
+.secim.acik .secim-ok { transform: rotate(180deg); color: var(--kirmizi); }
+.secim-hatali .secim-dugme { border-color: var(--kirmizi); }
+/* liste <body>'de, ekrana sabit: konum ve yüksekliği cekirdek.js verir (z: çerez 80 üstü, ışık kutusu 90 altı) */
+.secim-liste { position: fixed; z-index: 85; top: 0; left: 0; width: max-content;
+  max-width: min(28rem, calc(100vw - 16px)); max-height: 23rem; overflow-y: auto; overscroll-behavior: contain;
+  margin: 0; padding: .375rem 0; list-style: none; background: #fff; border: 1px solid #e4e4e7; outline: none;
+  box-shadow: 0 24px 48px -16px rgba(0, 0, 0, .28); animation: secim-ac .16s ease-out; }
+.secim-liste[hidden] { display: none; }
+.secim-liste.yukari { animation-name: secim-ac-yukari; }
+@keyframes secim-ac { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+@keyframes secim-ac-yukari { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.secim-oge { display: flex; align-items: center; gap: .75rem; min-height: 44px; padding: .55rem 1rem; cursor: pointer; font-size: .9375rem;
+  line-height: 1.35; color: #3f3f46; transition: background-color .15s ease, color .15s ease; }
+.secim-oge.etkin { background: #f4f4f5; color: #18181b; }
+.secim-oge[aria-selected="true"] { color: var(--kirmizi); font-weight: 600; }
+.secim-oge[aria-disabled="true"] { opacity: .45; cursor: default; }
+.secim-ad { flex: 1; }
+.secim-sayi { font-size: 11px; font-weight: 700; color: #a1a1aa; font-variant-numeric: tabular-nums; }
+.secim-tik { flex-shrink: 0; font-size: 18px; color: var(--kirmizi); visibility: hidden; }
+.secim-oge[aria-selected="true"] .secim-tik { visibility: visible; }
+
 /* Yüzen iletişim düğmeleri */
 #yuzen { transition: opacity .3s ease, transform .3s ease, visibility 0s; }
 #yuzen.yuzen-gizli { opacity: 0; transform: translateY(16px); visibility: hidden; transition: opacity .3s ease, transform .3s ease, visibility 0s linear .3s; }
@@ -98,4 +131,4 @@ html.onizleme #cerez, html.onizleme #yuzen, html.onizleme #mobil-cubuk { display
 html.onizleme body { padding-bottom: 0; }
 
 /* Yazdırma */
-@media print { #ust-blok, footer, #yuzen, #cerez { display: none !important; } }
+@media print { #ust-blok, footer, #yuzen, #cerez, .secim-liste { display: none !important; } }

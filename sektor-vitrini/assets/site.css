@@ -39,3 +39,12 @@
 
 /* Grup çubukları */
 .cubuk > span { transition: width .8s cubic-bezier(.22,.61,.36,1); }
+
+/* Seçim kutusu — editoryal: ferah satırlar, ince çizgi, hafif ve büyük yazı; üzerine gelince satır içeri kayar (sektör dizini dili) */
+.secim-liste { padding: .5rem 1.25rem; border-color: #e4e4e7; box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .3); }
+.secim-oge { gap: 1rem; padding: .7rem 0; border-bottom: 1px solid #f4f4f5; font-size: 1.0625rem; font-weight: 300; letter-spacing: -.01em;
+  color: #27272a; transition: padding .3s cubic-bezier(.22, .61, .36, 1), color .2s ease; }
+.secim-oge:last-child { border-bottom: 0; }
+.secim-oge.etkin { background: transparent; padding-left: .6rem; color: var(--kirmizi-koyu); }
+.secim-oge[aria-selected="true"] { font-weight: 500; color: #18181b; }
+.secim-oge.secim-tumu .secim-ad { font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
