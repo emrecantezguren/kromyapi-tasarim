@@ -2,7 +2,7 @@
    Karakter: editoryal; büyük fotoğraf, ince çizgi, numaralı dergi düzeni. */
 
 /* Giriş: başlık + sektör mozaiği. Masaüstünde ikisi birlikte ilk ekrana sığar: solda etiket, başlık ve tek satır açıklama,
-   sağda aynı yükseklikte üç satırlık rakam listesi; altında 6 sütun × 2 dolgun sıra mozaik. Ölçüler ekran yüksekliğiyle uyumlu.
+   sağda aynı yükseklikte üç satırlık kısa liste (kesin sayı yok); altında 6 sütun × 2 dolgun sıra mozaik. Ölçüler ekran yüksekliğiyle uyumlu.
    Telefon/tablette kutular kendi oranında, kaydırarak. */
 .giris { padding-top: 2.5rem; }
 @media (min-width: 768px) { .giris { padding-top: 4rem; } }
@@ -13,9 +13,13 @@
   .giris .giris-etiket { margin-bottom: clamp(.75rem, 2vh, 1.5rem); }
   .giris h1 { font-size: clamp(44px, min(4.8vw, 8vh), 88px); }
   .giris .giris-metni { margin-top: clamp(.75rem, 2vh, 1.5rem); font-size: clamp(17px, 2.3vh, 22px); max-width: none; }
-  /* sağdaki rakamlar: soldaki yazı bloğu yüksekliğinde üç satır (üstü etiketle, altı açıklamayla hizalı), rakam sütunu sağa yaslı */
-  .giris .giris-yan dd { min-width: 2.4em; font-size: clamp(30px, 4.6vh, 48px); line-height: 1; text-align: right; }
-  .giris .giris-yan dt { font-size: 12px; }
+  /* sağdaki "Yüzlerce proje / Onlarca il / Her sektör": soldaki yazı bloğu yüksekliğinde üç satır (üstü etiketle, altı
+     açıklamayla hizalı); sözcükler sağa yaslı bir sütun, etiketler yanında hizalı ikinci sütun */
+  .giris .giris-yan { display: grid; grid-template-columns: auto auto; grid-auto-flow: row dense; align-content: space-between;
+    align-items: baseline; column-gap: 1rem; }
+  .giris .giris-yan > div { display: contents; }
+  .giris .giris-yan dd { grid-column: 1; font-size: clamp(28px, 4.2vh, 44px); line-height: 1; text-align: right; }
+  .giris .giris-yan dt { grid-column: 2; margin-top: 0; font-size: 12px; }
   .giris .mozaik { grid-template-rows: repeat(2, minmax(150px, 1fr)); }
 }
 /* çok alçak ekranda geniş kutudaki kısa açıklama başlıkla çakışmasın */
@@ -68,3 +72,10 @@
 .secim-oge.etkin { background: transparent; padding-left: .6rem; color: var(--kirmizi-koyu); }
 .secim-oge[aria-selected="true"] { font-weight: 500; color: #18181b; }
 .secim-oge.secim-tumu .secim-ad { font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+
+/* WhatsApp: sol altta, orijinal yuvarlak yeşil simge (telefon düğmesi sağ altta kalır; ikisi de footer görününce çekilir) */
+#yuzen a[href^="https://wa.me/"] { position: fixed; left: 1.25rem; bottom: 1.25rem; width: 3.5rem; height: 3.5rem; border-radius: 9999px;
+  box-shadow: 0 10px 24px -6px rgba(37, 211, 102, .55), 0 2px 6px rgba(0, 0, 0, .15); }
+#yuzen a[href^="https://wa.me/"] svg { width: 1.875rem; height: 1.875rem; }
+/* kapsayıcıda transform olursa sabit konumlu WhatsApp ona göre konumlanır (gizlenirken sağa sıçrar): yalnız solarak gizlensin */
+#yuzen, #yuzen.yuzen-gizli { transform: none; }
