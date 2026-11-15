@@ -2,7 +2,7 @@
    Karakter: editoryal; büyük fotoğraf, ince çizgi, numaralı dergi düzeni. */
 
 /* Giriş: başlık + sektör mozaiği. Masaüstünde ikisi birlikte ilk ekrana sığar: solda etiket, başlık ve tek satır açıklama,
-   sağda rakamlar (alt çizgiler hizalı); altında 6 sütun × 2 dolgun sıra mozaik. Ölçüler ekran yüksekliğiyle uyumlu.
+   sağda aynı yükseklikte üç satırlık rakam listesi; altında 6 sütun × 2 dolgun sıra mozaik. Ölçüler ekran yüksekliğiyle uyumlu.
    Telefon/tablette kutular kendi oranında, kaydırarak. */
 .giris { padding-top: 2.5rem; }
 @media (min-width: 768px) { .giris { padding-top: 4rem; } }
@@ -10,9 +10,12 @@
   .giris { display: grid; grid-template-rows: auto 1fr; padding-top: clamp(1.5rem, 4.5vh, 4.5rem);
     min-height: calc(100vh - var(--ust-yukseklik) - 32px); min-height: calc(100svh - var(--ust-yukseklik) - 32px); }
   .giris .giris-ust { margin-bottom: clamp(1.5rem, 4vh, 3.5rem); }
-  .giris .giris-ust .kucuk-baslik { margin-bottom: clamp(.75rem, 2vh, 1.5rem); }
+  .giris .giris-etiket { margin-bottom: clamp(.75rem, 2vh, 1.5rem); }
   .giris h1 { font-size: clamp(44px, min(4.8vw, 8vh), 88px); }
   .giris .giris-metni { margin-top: clamp(.75rem, 2vh, 1.5rem); font-size: clamp(17px, 2.3vh, 22px); max-width: none; }
+  /* sağdaki rakamlar: soldaki yazı bloğu yüksekliğinde üç satır (üstü etiketle, altı açıklamayla hizalı), rakam sütunu sağa yaslı */
+  .giris .giris-yan dd { min-width: 2.4em; font-size: clamp(30px, 4.6vh, 48px); line-height: 1; text-align: right; }
+  .giris .giris-yan dt { font-size: 12px; }
   .giris .mozaik { grid-template-rows: repeat(2, minmax(150px, 1fr)); }
 }
 /* çok alçak ekranda geniş kutudaki kısa açıklama başlıkla çakışmasın */
