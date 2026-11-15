@@ -1,6 +1,23 @@
 /* Krom Yapı · Site C (Sektör Vitrini) — siteye özel stiller. Ortak stiller: /ortak/web/cekirdek.css
    Karakter: editoryal; büyük fotoğraf, ince çizgi, numaralı dergi düzeni. */
 
+/* Giriş: başlık + sektör mozaiği. Masaüstünde ikisi birlikte ilk ekrana tam sığar: başlık alanı ve kutu
+   satırları ekran yüksekliğine göre ölçeklenir (kutular hep görünsün). Telefon/tablette kutular kendi oranında, kaydırarak. */
+.giris { padding-top: 2.5rem; }
+@media (min-width: 768px) { .giris { padding-top: 4rem; } }
+@media (min-width: 1024px) {
+  .giris { display: grid; grid-template-rows: auto 1fr; padding-top: clamp(1rem, 3vh, 4rem);
+    min-height: calc(100vh - var(--ust-yukseklik) - 24px); min-height: calc(100svh - var(--ust-yukseklik) - 24px); }
+  .giris .giris-ust { margin-bottom: clamp(1rem, 3vh, 3.5rem); }
+  .giris .giris-ust .kucuk-baslik { margin-bottom: clamp(.5rem, 1.6vh, 1.5rem); }
+  .giris h1 { font-size: clamp(44px, min(6vw, 8vh), 88px); }
+  .giris .giris-yan p { font-size: clamp(16px, 2.3vh, 24px); }
+  .giris .giris-yan dl { margin-top: clamp(.75rem, 2vh, 2rem); }
+  .giris .mozaik { grid-template-rows: repeat(3, minmax(96px, 1fr)); }
+}
+/* alçak ekranda geniş kutudaki kısa açıklama başlıkla çakışmasın */
+@media (min-width: 1024px) and (max-height: 899px) { .giris .mozaik-ozet { display: none; } }
+
 /* Sektör mozaiği */
 .mozaik-kutu img { transition: transform .9s cubic-bezier(.22,.61,.36,1), filter .5s; }
 .mozaik-kutu:hover img { transform: scale(1.06); }
