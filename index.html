@@ -6,7 +6,7 @@
 <title>Krom Yapı · Tasarım Sunumu | Nex Yazılım</title>
 <meta name="description" content="Nex Yazılım'ın Krom Yapı için hazırladığı dört web sitesi tasarımı: Proje Atlası, Zemin Seçici, Sektör Vitrini ve Son Tasarım.">
 <meta name="robots" content="noindex, nofollow">
-<link rel="icon" href="gorsel/nex-favicon.png" type="image/png">
+<link rel="icon" href="gorsel/nex-simge-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="gorsel/nex-apple-touch.png">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -29,7 +29,11 @@ tailwind.config = { theme: { extend: {
   .tasarim-kart:hover .telefon { transform: translateY(-10px) rotate(-2deg); }
   .tasarim-kart:hover .kart-ok { transform: translateX(4px); }
   .kart-ok { transition: transform .25s ease; }
-  @media (prefers-reduced-motion: reduce) { .telefon, .kart-ok, .onizleme iframe { transition: none; } }
+  /* Lansman kartı: telefon ön izlemenin içinde, sağ altta */
+  .vitrin .onizleme { background: #2c2c2e; }
+  .vitrin .telefon { right: 4%; bottom: 7%; width: 19%; border-color: #000; box-shadow: 0 24px 50px -10px rgba(0,0,0,.65); }
+  @media (max-width: 1023px) { .vitrin .telefon { width: 21%; } }
+  @media (prefers-reduced-motion: reduce) { .telefon, .kart-ok, .onizleme iframe { transition: none; } .animate-pulse { animation: none; } }
 </style>
 </head>
 <body class="bg-zemin text-murekkep font-sans">
@@ -43,7 +47,29 @@ tailwind.config = { theme: { extend: {
   </header>
 
   <section class="max-w-7xl mx-auto px-5 sm:px-8 pb-20 md:pb-24" aria-label="Tasarımlar">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-6 xl:gap-8">
+    
+    <article class="tasarim-kart vitrin relative grid lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] items-center gap-2 lg:gap-4 rounded-3xl bg-murekkep text-white shadow-xl p-3 md:p-4 mb-14 md:mb-20">
+      <div class="relative">
+        <div class="onizleme rounded-2xl" data-canli="son-tasarim/?onizleme">
+          <img class="afis" src="gorsel/son-tasarim-masaustu.jpg" alt="Son Tasarım ana sayfası, masaüstü görünümü" width="960" height="600" fetchpriority="high">
+        </div>
+        <div class="telefon" aria-hidden="true"><img src="gorsel/son-tasarim-mobil.jpg" alt=""></div>
+        <a href="son-tasarim/" class="absolute inset-0 z-10 rounded-2xl" aria-label="Son Tasarım tasarımını aç"></a>
+      </div>
+      <div class="px-3 pt-6 pb-4 md:px-6 lg:px-8 lg:py-8">
+        <p class="inline-flex items-center gap-2 rounded-full bg-kirmizi px-3 py-1 text-[11px] font-bold tracking-[0.18em] uppercase">
+          <span class="h-1.5 w-1.5 rounded-full bg-white animate-pulse"></span>Yeni · Tasarım 04</p>
+        <h2 class="mt-5 text-4xl md:text-5xl font-extrabold tracking-tight">Son Tasarım</h2>
+        <p class="mt-4 text-white/70 md:text-lg leading-relaxed">Sektör Vitrini (Tasarım 3) üzerine kurulan, 1. ve 2. tasarımdan seçilen bölümlerle tamamlanan son tasarım.</p>
+        <ul class="mt-6 space-y-3 text-sm md:text-base leading-relaxed text-white/90"><li class="flex gap-3"><span class="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-kirmizi"></span><span>Beğenilen giriş ve sektör (kategori) alanı Tasarım 3'ten</span></li><li class="flex gap-3"><span class="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-kirmizi"></span><span>Seçilen bölümler Tasarım 1 ve 2'den eklenecek</span></li><li class="flex gap-3"><span class="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-kirmizi"></span><span>Notlarla adım adım güncelleniyor</span></li></ul>
+        <div class="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
+          <a href="son-tasarim/" class="inline-flex items-center gap-2 rounded-full bg-white text-murekkep px-7 py-3.5 font-semibold hover:bg-zinc-200 transition-colors">Tasarımı incele <span class="kart-ok" aria-hidden="true">→</span></a>
+          <span class="text-sm text-white/60 whitespace-nowrap">189 sayfa</span>
+        </div>
+      </div>
+    </article>
+    <h2 class="mb-6 md:mb-8 text-xs font-bold tracking-[0.18em] uppercase text-soluk">Önceki tasarımlar</h2>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-6 xl:gap-8">
       
       <article class="tasarim-kart relative flex flex-col rounded-3xl bg-white border border-black/5 shadow-sm hover:shadow-xl transition-shadow duration-300">
         <div class="relative">
@@ -104,27 +130,6 @@ tailwind.config = { theme: { extend: {
           <ul class="mt-5 space-y-2.5 text-sm leading-relaxed"><li class="flex gap-2.5"><span class="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-kirmizi"></span><span>Sektör mozaiği ve imleci izleyen görselli sektör dizini</span></li><li class="flex gap-2.5"><span class="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-kirmizi"></span><span>Yedi sektör sayfası ve vaka anlatımlı proje sayfaları</span></li><li class="flex gap-2.5"><span class="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-kirmizi"></span><span>Masonry fotoğraf galerisi ve dergi düzeninde duyurular</span></li></ul>
           <div class="mt-auto pt-7 flex items-center justify-between gap-4">
             <a href="sektor-vitrini/" class="inline-flex items-center gap-2 rounded-full bg-murekkep text-white px-6 py-3 font-medium hover:bg-black transition-colors">Tasarımı incele <span class="kart-ok" aria-hidden="true">→</span></a>
-            <span class="text-sm text-soluk whitespace-nowrap">189 sayfa</span>
-          </div>
-        </div>
-      </article>
-      <article class="tasarim-kart relative flex flex-col rounded-3xl bg-white border border-black/5 shadow-sm hover:shadow-xl transition-shadow duration-300">
-        <div class="relative">
-          <div class="onizleme rounded-t-3xl" data-canli="son-tasarim/?onizleme">
-            <img class="afis" src="gorsel/son-tasarim-masaustu.jpg" alt="Son Tasarım ana sayfası, masaüstü görünümü" width="960" height="600" loading="lazy">
-          </div>
-          <div class="telefon" aria-hidden="true"><img src="gorsel/son-tasarim-mobil.jpg" alt="" loading="lazy"></div>
-          <a href="son-tasarim/" class="absolute inset-0 z-10 rounded-t-3xl" aria-label="Son Tasarım tasarımını aç"></a>
-        </div>
-        <div class="p-6 md:p-7 flex flex-col flex-1">
-          <div class="pr-[30%]">
-            <p class="text-xs font-bold tracking-[0.18em] uppercase text-soluk">Tasarım 04</p>
-            <h3 class="mt-2 text-2xl md:text-[28px] font-extrabold tracking-tight">Son Tasarım</h3>
-          </div>
-          <p class="mt-3 text-soluk leading-relaxed">Sektör Vitrini (Tasarım 3) üzerine kurulan, 1. ve 2. tasarımdan seçilen bölümlerle tamamlanan son tasarım.</p>
-          <ul class="mt-5 space-y-2.5 text-sm leading-relaxed"><li class="flex gap-2.5"><span class="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-kirmizi"></span><span>Beğenilen giriş ve sektör (kategori) alanı Tasarım 3'ten</span></li><li class="flex gap-2.5"><span class="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-kirmizi"></span><span>Seçilen bölümler Tasarım 1 ve 2'den eklenecek</span></li><li class="flex gap-2.5"><span class="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-kirmizi"></span><span>Notlarla adım adım güncelleniyor</span></li></ul>
-          <div class="mt-auto pt-7 flex items-center justify-between gap-4">
-            <a href="son-tasarim/" class="inline-flex items-center gap-2 rounded-full bg-murekkep text-white px-6 py-3 font-medium hover:bg-black transition-colors">Tasarımı incele <span class="kart-ok" aria-hidden="true">→</span></a>
             <span class="text-sm text-soluk whitespace-nowrap">189 sayfa</span>
           </div>
         </div>
