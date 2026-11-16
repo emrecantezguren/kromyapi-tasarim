@@ -8,6 +8,17 @@
     koy: function (k, v) { try { window.localStorage.setItem(k, v); } catch (e) { /* gizli pencere */ } }
   };
 
+  /* Simge yazı tipi indiğinde simgeleri göster (o ana dek yer tutar ama saydamdır; bkz. cekirdek.css) */
+  /* (yazı tipi hiç inmezse simgeler saydam kalır: yarım ligatür harfi görünmez; geç gelirse 'loadingdone' ile yakalanır) */
+  var simgeHazir = function () { document.documentElement.classList.add('simge-hazir'); };
+  if (document.fonts && document.fonts.load) {
+    var simgeYukle = function () {
+      document.fonts.load('24px "Material Symbols Outlined"', 'home').then(function (y) { if (y.length) simgeHazir(); }, function () {});
+    };
+    simgeYukle();
+    document.fonts.addEventListener('loadingdone', simgeYukle);
+  } else simgeHazir();
+
   /* Sunum sayfasındaki mini ön izleme (?onizleme): çerez, yüzen düğme ve alt çubuk gösterilmez */
   if (/[?&]onizleme\b/.test(location.search)) document.documentElement.classList.add('onizleme');
 

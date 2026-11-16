@@ -8,6 +8,12 @@ html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
 body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
 .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+/* Simge yazı tipi inene kadar ligatür adları ("expand_more", "request_quote"…) görünmez ama kelime kadar yer kaplar → menü ve
+   düğmeler kayar. Her simge 1em genişlikte; yazı tipi gelene dek saydam (cekirdek.js html'e .simge-hazir ekler). */
+/* yalnız genişlik sabit ve yatayda kırpılır (kaymayı yapan genişlikti); dikeyde serbest. html öneki: Tailwind text-* sınıfları
+   satır yüksekliğini de değiştirir, simge 1em satırda kalsın */
+html .material-symbols-outlined { width: 1em; line-height: 1; overflow-x: clip; flex-shrink: 0; }
+html:not(.simge-hazir) .material-symbols-outlined { color: transparent !important; }
 .ikon-dolu { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
 img { image-rendering: auto; }
 
