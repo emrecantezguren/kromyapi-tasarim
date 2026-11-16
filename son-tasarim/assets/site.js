@@ -1,4 +1,4 @@
-/* Krom Yapı · Son Tasarım — ürün sayfalarındaki katman kesiti (Tasarım 2'den). Süzgeç, lightbox, video: /ortak/web/cekirdek.js */
+/* Krom Yapı · Son Tasarım — ürün sayfalarındaki katman kesiti (Tasarım 2'den), ana sayfadaki kaydırılabilir duyuru listesi. Süzgeç, lightbox, video: /ortak/web/cekirdek.js */
 (function () {
   'use strict';
   var $ = function (s, k) { return (k || document).querySelector(s); };
@@ -34,4 +34,13 @@
     }
   }
   $$('[data-kesit]').forEach(kesitKur);
+
+  /* Sahadan: kaydırılabilir duyuru listesi — sona gelince alttaki "kaydırın" ipucu kaybolur */
+  $$('[data-kaydir-liste]').forEach(function (liste) {
+    var ipucu = $('[data-kaydir-ipucu]', liste.parentNode);
+    if (!ipucu) return;
+    var guncelle = function () { ipucu.classList.toggle('opacity-0', liste.scrollTop + liste.clientHeight >= liste.scrollHeight - 8); };
+    liste.addEventListener('scroll', guncelle, { passive: true });
+    guncelle();
+  });
 })();

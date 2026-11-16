@@ -31,6 +31,12 @@
 .mozaik-kutu .mozaik-ok { transition: transform .3s ease, background .3s ease; }
 .mozaik-kutu:hover .mozaik-ok { transform: translateX(4px); background: var(--kirmizi); color: #fff; }
 
+/* Sahadan: sağdaki duyuru listesi (masaüstünde kendi içinde kayar) — ince kırmızı kaydırma çubuğu */
+.duyuru-kaydir { scrollbar-width: thin; scrollbar-color: var(--kirmizi) #e4e4e7; }
+.duyuru-kaydir::-webkit-scrollbar { width: 6px; }
+.duyuru-kaydir::-webkit-scrollbar-track { background: #e4e4e7; }
+.duyuru-kaydir::-webkit-scrollbar-thumb { background: var(--kirmizi); }
+
 /* Masonry galeri */
 .masonry { column-count: 2; column-gap: 10px; }
 @media (min-width: 768px) { .masonry { column-count: 3; column-gap: 14px; } }
