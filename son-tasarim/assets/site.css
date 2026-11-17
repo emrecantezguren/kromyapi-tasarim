@@ -156,3 +156,29 @@
 .atlas-acik .sehir-satir.secili .sehir-cubuk > span { background: var(--kirmizi-koyu); }
 /* sayısız işaret (data-sayisiz): içi boş kırmızı daire, büyüklük yoğunluğu gösterir */
 [data-sayisiz] .atlas-pin { font-size: 0; }
+/* İllere göre: uzun, içinde kayan liste yerine tüm iller bir bakışta — sektör düğmeleri gibi küçük il düğmeleri (iç kaydırma yok;
+   yoğunluğu haritadaki daire büyüklüğü gösterir). Seçili il kırmızı; süzgeçle projesi kalmayan il soluk (atlas.js opacity-40). */
+@media (min-width: 1024px) {
+  [data-atlas="tam"] aside ul { display: flex; flex-wrap: wrap; gap: .375rem; max-height: none; overflow: visible; padding: 0 .75rem .75rem; }
+  [data-atlas="tam"] .sehir-satir { display: inline-flex; width: auto; padding: .375rem .625rem; border: 1px solid #e4e4e7; background: #fff;
+    font-size: 12px; transition: border-color .2s, background .2s, color .2s; }
+  [data-atlas="tam"] .sehir-satir > span:first-child { font-size: 12px; }
+  [data-atlas="tam"] .sehir-satir:hover { border-color: var(--kirmizi); background: #fff; }
+  [data-atlas="tam"] .sehir-satir .sehir-cubuk { display: none; }
+  [data-atlas="tam"] .sehir-satir.secili, [data-atlas="tam"].atlas-acik .sehir-satir.secili { background: var(--kirmizi); border-color: var(--kirmizi); color: #fff; }
+  [data-atlas="tam"] aside ul + p { padding-top: .5rem; padding-bottom: .5rem; font-size: 11px; line-height: 1.45; }
+}
+/* Sol sütun (harita + İllere göre) yapışkanken ekrana sığsın ve sol alttaki WhatsApp düğmesinin (alt 20 px + 56 px) üstünde bitsin:
+   önceden ~1000 px boyundaydı, il listesinin altı görünmüyor, WhatsApp da üstüne biniyordu. Boy sabit (Leaflet kap boyu
+   değişimini görmez); harita kalan yere uyar (170–440 px), il kutusu 200 px. Üst boşluk süzgeç çubuğunun altından başlar (şerit görünürken 120 px +
+   çubuk; 1024–1279 px'te çubuk iki satır), şerit gizlenince yalnız üst kayar. Yetecek boy yoksa sütun yapışmaz, sayfayla kayar. */
+[data-atlas="tam"] { --atlas-ust: 298px; --atlas-boy: calc(100vh - 390px); }
+@media (min-width: 1280px) { [data-atlas="tam"] { --atlas-ust: 257px; --atlas-boy: calc(100vh - 349px); } }
+@media (min-width: 1024px) { [data-atlas="tam"] aside > div { position: static; } }
+@media (min-width: 1024px) and (max-width: 1279.98px) and (min-height: 780px), (min-width: 1280px) and (min-height: 740px) {
+  [data-atlas="tam"] aside > div { position: sticky; top: var(--atlas-ust); height: min(var(--atlas-boy), 660px);
+    display: flex; flex-direction: column; transition: top .3s ease-out; }
+  html.serit-gizli [data-atlas="tam"] aside > div { top: calc(var(--atlas-ust) - 40px); }
+  [data-atlas="tam"] aside .atlas-harita { height: auto; flex: 1 1 0; min-height: 170px; max-height: 440px; }
+  [data-atlas="tam"] aside > div > .bg-white { flex: none; }
+}
