@@ -143,6 +143,8 @@ html.onizleme body { padding-bottom: 0; }
 .galeri-ok { transition: transform .3s ease; }
 [data-katlanir].acik .galeri-ok { transform: rotate(180deg); }
 .album-izgara:has(.acik) { align-items: start; }   /* açılan albümün yanındaki kart boşuna uzamasın */
+.galeri-ust { display: none; }                      /* başlıktaki "Daha az göster": yalnız albüm açıkken */
+[data-album]:has([data-katlanir].acik) .galeri-ust { display: inline-flex; }
 
 /* Yazdırma */
 @media print { #ust-blok, footer, #yuzen, #cerez, .secim-liste { display: none !important; } }

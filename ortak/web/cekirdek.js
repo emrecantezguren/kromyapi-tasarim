@@ -123,6 +123,9 @@
       var ust = kap.parentElement.getBoundingClientRect().top;
       if (ust < pay) window.scrollTo({ top: ust + window.scrollY - pay, behavior: 'smooth' });
     });
+    /* başlıktaki ikinci "Daha az göster" (yalnız açıkken görünür) aynı düğmeyi tetikler */
+    var ustDugme = $('[data-galeri-ust]', kap.closest('[data-album]') || kap);
+    if (ustDugme) ustDugme.addEventListener('click', function () { d.click(); });
   });
 
   /* Lightbox: [data-galeri] içindeki a[data-buyuk] */
