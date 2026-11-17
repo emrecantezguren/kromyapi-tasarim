@@ -40,13 +40,23 @@
   $$('[data-acilir]').forEach(function (kap) {
     var dugme = $('[data-acilir-dugme]', kap), menu = $('.mega-menu', kap), zaman;
     if (!dugme || !menu) return;
-    function ac() { clearTimeout(zaman); menu.classList.add('mm-acik'); dugme.setAttribute('aria-expanded', 'true'); }
+    var acilisY = 0;
+    function ac() { clearTimeout(zaman); if (!menu.classList.contains('mm-acik')) acilisY = window.scrollY; menu.classList.add('mm-acik'); dugme.setAttribute('aria-expanded', 'true'); }
     function kapat() { zaman = setTimeout(function () { menu.classList.remove('mm-acik'); dugme.setAttribute('aria-expanded', 'false'); }, 120); }
     kap.addEventListener('mouseenter', ac);
     kap.addEventListener('mouseleave', kapat);
     kap.addEventListener('focusin', ac);
     kap.addEventListener('focusout', function (ev) { if (!kap.contains(ev.relatedTarget)) kapat(); });
     document.addEventListener('keydown', function (ev) { if (ev.key === 'Escape') { menu.classList.remove('mm-acik'); dugme.setAttribute('aria-expanded', 'false'); } });
+    /* #ust-blok[data-kaydir-kapat] (Son Tasarım): açık menü sayfa yukarı/aşağı kayınca hemen kapanır; fare üstünde kalsa da
+       yeniden açılması için menüden çıkıp tekrar girmek gerekir */
+    if (ust && ust.hasAttribute('data-kaydir-kapat')) {
+      window.addEventListener('scroll', function () {
+        if (!menu.classList.contains('mm-acik') || Math.abs(window.scrollY - acilisY) < 8) return;
+        clearTimeout(zaman); menu.classList.remove('mm-acik'); dugme.setAttribute('aria-expanded', 'false');
+        if (kap.contains(document.activeElement)) document.activeElement.blur();
+      }, { passive: true });
+    }
   });
   $$('.mm-kat').forEach(function (b) {
     var sec = function () {
