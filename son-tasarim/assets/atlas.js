@@ -1,6 +1,7 @@
 /* Krom Yapı · Proje Atlası — Leaflet haritası + süzgeçler.
    [data-atlas="ozet"] ana sayfa bölümü, [data-atlas="tam"] /projeler/ sayfası. Veri: window.KROM (veri.js)
-   [data-sayisiz] (Son Tasarım): işaretlerde ve ipuçlarında proje sayısı yazmaz; büyüklük yine yoğunluğu gösterir. */
+   [data-sayisiz] (Son Tasarım): işaretlerde ve ipuçlarında proje sayısı yazmaz; büyüklük yine yoğunluğu gösterir.
+   [data-adim="n"] (Son Tasarım): listede ilk n eşleşen kart, [data-atlas-daha] düğmesi n'er n'er açar; süzgeç değişince başa döner. */
 (function () {
   'use strict';
   var K = window.KROM, kok = document.querySelector('[data-atlas]');
@@ -9,6 +10,7 @@
   var $$ = function (s, k) { return Array.prototype.slice.call((k || document).querySelectorAll(s)); };
   var mod = kok.dataset.atlas, koyu = kok.dataset.tema === 'koyu', sayisiz = kok.hasAttribute('data-sayisiz');
   var sayiEki = function (n) { return sayisiz ? '' : ' — ' + n + ' proje'; };
+  var adim = +kok.dataset.adim || 0, goster = adim, sonSuzgec = '';
   var TR = [[35.9, 25.9], [42.1, 44.6]];
   var kucukHarf = function (s) { return (s || '').toLocaleLowerCase('tr'); };
 
@@ -117,12 +119,14 @@
   }
 
   function kartlar() {
-    var n = 0;
+    var n = 0, suzgec = JSON.stringify(durum);
+    if (suzgec !== sonSuzgec) { goster = adim; sonSuzgec = suzgec; }   // süzgeç değişti: sayfalama başa
     $$('.proje-karti').forEach(function (k) {
       var p = K.indeks[k.dataset.s], ok = p && uyar(p, true);
-      k.classList.toggle('gizli-kart', !ok);
+      k.classList.toggle('gizli-kart', !ok || (adim > 0 && n >= goster));
       if (ok) n++;
     });
+    var daha = $('[data-atlas-daha]'); if (daha) daha.classList.toggle('hidden', !adim || n <= goster);
     $$('[data-sonuc]').forEach(function (s) { s.textContent = n; });
     var bos = $('[data-bos]'); if (bos) bos.classList.toggle('hidden', n > 0);
     // form alanlarını durumla eşitle
@@ -131,6 +135,9 @@
     Object.keys(durum).forEach(function (k) { if (durum[k]) q.set(k, durum[k]); });
     history.replaceState(null, '', location.pathname + (q.toString() ? '?' + q.toString() : '') + location.hash);
   }
+
+  var dahaDugme = $('[data-atlas-daha]');
+  if (dahaDugme) dahaDugme.addEventListener('click', function () { goster += adim; kartlar(); });
 
   K.indeks = {};
   K.projeler.forEach(function (p) { K.indeks[p.s] = p; });

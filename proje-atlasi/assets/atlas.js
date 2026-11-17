@@ -1,14 +1,12 @@
 /* Krom Yapı · Proje Atlası — Leaflet haritası + süzgeçler.
-   [data-atlas="ozet"] ana sayfa bölümü, [data-atlas="tam"] /projeler/ sayfası. Veri: window.KROM (veri.js)
-   [data-sayisiz] (Son Tasarım): işaretlerde ve ipuçlarında proje sayısı yazmaz; büyüklük yine yoğunluğu gösterir. */
+   [data-atlas="ozet"] ana sayfa bölümü, [data-atlas="tam"] /projeler/ sayfası. Veri: window.KROM (veri.js) */
 (function () {
   'use strict';
   var K = window.KROM, kok = document.querySelector('[data-atlas]');
   if (!K || !kok || !window.L) return;
   var $ = function (s, k) { return (k || document).querySelector(s); };
   var $$ = function (s, k) { return Array.prototype.slice.call((k || document).querySelectorAll(s)); };
-  var mod = kok.dataset.atlas, koyu = kok.dataset.tema === 'koyu', sayisiz = kok.hasAttribute('data-sayisiz');
-  var sayiEki = function (n) { return sayisiz ? '' : ' — ' + n + ' proje'; };
+  var mod = kok.dataset.atlas, koyu = kok.dataset.tema === 'koyu';
   var TR = [[35.9, 25.9], [42.1, 44.6]];
   var kucukHarf = function (s) { return (s || '').toLocaleLowerCase('tr'); };
 
@@ -42,7 +40,7 @@
     var b = Math.round(24 + Math.sqrt(n) * 6);
     return L.divIcon({
       className: '', iconSize: [b, b], iconAnchor: [b / 2, b / 2],
-      html: '<div class="atlas-pin' + (secili ? ' secili' : '') + (ilce ? ' ilce' : '') + '" style="width:' + b + 'px;height:' + b + 'px">' + (sayisiz ? '' : n) + '</div>'
+      html: '<div class="atlas-pin' + (secili ? ' secili' : '') + (ilce ? ' ilce' : '') + '" style="width:' + b + 'px;height:' + b + 'px">' + n + '</div>'
     });
   }
 
@@ -72,14 +70,14 @@
       Object.keys(ilceSayim).forEach(function (k) {
         var p = k.split('|'), yer = p[1] ? K.ilce[k] : K.sehir[p[0]];
         L.marker(yer, { icon: pin(ilceSayim[k], durum.sehir === p[0], !!p[1]) })
-          .bindTooltip((p[1] ? p[1] + ' · ' : '') + p[0] + sayiEki(ilceSayim[k]), { className: 'atlas-ipucu', direction: 'top', offset: [0, -14] })
+          .bindTooltip((p[1] ? p[1] + ' · ' : '') + p[0] + ' — ' + ilceSayim[k] + ' proje', { className: 'atlas-ipucu', direction: 'top', offset: [0, -14] })
           .on('click', function () { if (durum.sehir !== p[0]) sehirSec(p[0], false); })
           .addTo(katman);
       });
     } else {
       Object.keys(sayim).forEach(function (s) {
         L.marker(K.sehir[s], { icon: pin(sayim[s], durum.sehir === s) })
-          .bindTooltip(s + sayiEki(sayim[s]), { className: 'atlas-ipucu', direction: 'top', offset: [0, -14] })
+          .bindTooltip(s + ' — ' + sayim[s] + ' proje', { className: 'atlas-ipucu', direction: 'top', offset: [0, -14] })
           .on('click', function () { sehirSec(s); })
           .addTo(katman);
       });
@@ -90,7 +88,7 @@
       var n = sayim[r.dataset.sehir] || 0;
       r.classList.toggle('secili', r.dataset.sehir === durum.sehir);
       r.classList.toggle('opacity-40', n === 0);
-      var sy = $('[data-sayi]', r); if (sy) sy.textContent = n;
+      $('[data-sayi]', r).textContent = n;
       $('.sehir-cubuk > span', r).style.width = (n / enCok * 100) + '%';
     });
     var yurtdisi = liste.filter(function (p) { return p.c && !K.sehir[p.c]; }).length;
