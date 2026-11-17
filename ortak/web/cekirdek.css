@@ -136,5 +136,13 @@ form .secim-bos .secim-metin { color: #71717a; }
 html.onizleme #cerez, html.onizleme #yuzen, html.onizleme #mobil-cubuk { display: none !important; }
 html.onizleme body { padding-bottom: 0; }
 
+/* Katlanır albüm (Kurumsal foto galeri): fazla fotoğraflar aşağı doğru açılır */
+.galeri-ek { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .5s ease; }
+.galeri-ek > div { overflow: hidden; min-height: 0; }
+[data-katlanir].acik > .galeri-ek { grid-template-rows: 1fr; }
+.galeri-ok { transition: transform .3s ease; }
+[data-katlanir].acik .galeri-ok { transform: rotate(180deg); }
+.album-izgara:has(.acik) { align-items: start; }   /* açılan albümün yanındaki kart boşuna uzamasın */
+
 /* Yazdırma */
 @media print { #ust-blok, footer, #yuzen, #cerez, .secim-liste { display: none !important; } }

@@ -109,6 +109,22 @@
     sayaclar.forEach(function (s) { gozcu.observe(s); });
   }
 
+  /* Katlanır albüm: [data-galeri-ac] düğmesi fazla fotoğrafları aşağı doğru açar; kapatırken albüm yukarıda kaldıysa ona döner */
+  $$('[data-galeri-ac]').forEach(function (d) {
+    var kap = d.closest('[data-katlanir]'), ek = $('.galeri-ek', kap), metin = $('[data-galeri-metin]', d);
+    d.addEventListener('click', function () {
+      var acik = kap.classList.toggle('acik');
+      d.setAttribute('aria-expanded', acik ? 'true' : 'false');
+      metin.textContent = acik ? d.dataset.kapat : d.dataset.ac;
+      if (acik) { ek.removeAttribute('inert'); return; }
+      ek.setAttribute('inert', '');
+      var altMenu = $('.ust-yapiskan');   // Kurumsal'ın yapışkan alt menüsü: albüm başlığı onun altında kalmasın
+      var pay = (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--ust-yukseklik')) || 0) + (altMenu ? altMenu.offsetHeight : 0) + 24;
+      var ust = kap.parentElement.getBoundingClientRect().top;
+      if (ust < pay) window.scrollTo({ top: ust + window.scrollY - pay, behavior: 'smooth' });
+    });
+  });
+
   /* Lightbox: [data-galeri] içindeki a[data-buyuk] */
   var kutu = $('#isik-kutu');
   if (kutu) {
